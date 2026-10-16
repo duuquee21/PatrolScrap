@@ -3,11 +3,11 @@ using UnityEngine.InputSystem;
 
 public class EntradaCoche : MonoBehaviour
 {
-    [SerializeField] private float _velocidadAcelerador = 3f;
+    [SerializeField] private float _velocidadAcelerador = 3f;   // unidades/s
     [SerializeField] private float _velocidadDireccion = 4f;
 
-    public float Acelerador { get; private set; }
-    public float Direccion { get; private set; }
+    public float Acelerador { get; private set; }   // -1 (freno/marcha atrás) a 1 (acelerar)
+    public float Direccion { get; private set; }    // -1 (izquierda) a 1 (derecha)
 
     private void Update()
     {
@@ -26,7 +26,7 @@ public class EntradaCoche : MonoBehaviour
         Gamepad mando = Gamepad.current;
         if (mando != null)
         {
-            // Gatillos analógicos: RT acelera, LT frena/marcha atrás
+            // RT acelera, LT frena/marcha atrás (analógico)
             float gatillos = mando.rightTrigger.ReadValue() - mando.leftTrigger.ReadValue();
             if (Mathf.Abs(gatillos) > Mathf.Abs(objetivoAcelerador)) objetivoAcelerador = gatillos;
 

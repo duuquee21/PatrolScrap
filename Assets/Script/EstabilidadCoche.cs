@@ -39,7 +39,7 @@ public class EstabilidadCoche : MonoBehaviour
 
     private void AplicarDampingRotacional()
     {
-        // Velocidad de giro expresada en los ejes del coche (x = pitch, y = yaw, z = roll)
+        // Velocidad de giro en ejes del coche (x = pitch, y = yaw, z = roll)
         Vector3 velocidadLocal = transform.InverseTransformDirection(_cuerpo.angularVelocity);
 
         Vector3 torqueLocal = new Vector3(
@@ -47,7 +47,6 @@ public class EstabilidadCoche : MonoBehaviour
             -velocidadLocal.y * _dampingYaw,
             -velocidadLocal.z * _dampingRoll);
 
-        // Acceleration = ignora la masa y la inercia, así los valores no dependen del peso del coche
         _cuerpo.AddRelativeTorque(torqueLocal, ForceMode.Acceleration);
     }
 
@@ -61,18 +60,16 @@ public class EstabilidadCoche : MonoBehaviour
         }
         if (ruedasEnSuelo < 2) return;
 
-        // Velocidad horizontal respecto al coche
         Vector3 velocidadPlano = Vector3.ProjectOnPlane(_cuerpo.linearVelocity, transform.up);
         if (velocidadPlano.magnitude < _velocidadMinimaAsistencia) return;
 
-        // Solo hacia delante, no en marcha atrás
+        // Solo hacia delante
         if (Vector3.Dot(velocidadPlano, transform.forward) <= 0f) return;
 
         // Ángulo entre hacia dónde apunta el coche y hacia dónde se mueve
         float angulo = Vector3.SignedAngle(transform.forward, velocidadPlano, transform.up);
         angulo = Mathf.Clamp(angulo, -_anguloMaximoAsistencia, _anguloMaximoAsistencia);
 
-        // Torque que gira el morro hacia la trayectoria
         _cuerpo.AddTorque(transform.up * (angulo * _fuerzaAlineacion), ForceMode.Acceleration);
     }
 }

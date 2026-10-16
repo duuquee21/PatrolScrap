@@ -4,8 +4,8 @@ using UnityEngine;
 public class AgarreCoche : MonoBehaviour
 {
     [Header("Agarre lateral")]
-    [SerializeField] private float _rigidezLateral = 4000f;   // N por m/s de deslizamiento
-    [SerializeField] private float _coeficienteAgarre = 1.0f; // 1 = asfalto, 0.5 = arena suelta
+    [SerializeField] private float _rigidezLateral = 4000f;    // N por m/s de deslizamiento
+    [SerializeField] private float _coeficienteAgarre = 1.0f;  // 1 = asfalto, 0.5 = arena suelta
 
     private Rigidbody _cuerpo;
     private SuspensionCoche _suspension;
@@ -28,7 +28,7 @@ public class AgarreCoche : MonoBehaviour
             // 2) Velocidad del punto de la rueda (incluye el efecto de girar)
             Vector3 velocidadPunto = _cuerpo.GetPointVelocity(rueda.Anclaje.position);
 
-            // 3) Cuánto se desliza de lado (m/s)
+            // 3) Deslizamiento lateral (m/s)
             float velocidadLateral = Vector3.Dot(velocidadPunto, lateral);
 
             // 4) Fuerza contraria al deslizamiento
