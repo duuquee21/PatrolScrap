@@ -14,21 +14,52 @@ public class MotorCoche : MonoBehaviour
     [SerializeField] private float _anguloMaximo = 30f;               // grados
     [SerializeField] private float _giroAVelocidadMaxima = 0.35f;     // 0.35 = a tope gira un 35 %
 
+    [Header("Turbo")]
+    [SerializeField] private float _multiplicadorTurbo = 1.8f;      // empuje extra
+    [SerializeField] private float _velocidadMaximaTurbo = 32f;     // m/s con turbo
+    [SerializeField] private float _capacidadTurbo = 100f;
+    [SerializeField] private float _consumoTurbo = 25f;             // unidades por segundo
+    [SerializeField] private float _recargaTurbo = 10f;             // unidades por segundo
+
     private Rigidbody _cuerpo;
     private SuspensionCoche _suspension;
     private EntradaCoche _entrada;
+
+    private float _depositoTurbo;
+    private bool _turboActivo;
+
+    public float DepositoTurbo01 => _depositoTurbo / _capacidadTurbo;   // para la UI más adelante
+    public bool TurboActivo => _turboActivo;
 
     private void Awake()
     {
         _cuerpo = GetComponent<Rigidbody>();
         _suspension = GetComponent<SuspensionCoche>();
         _entrada = GetComponent<EntradaCoche>();
+        _depositoTurbo = _capacidadTurbo;
     }
 
     private void FixedUpdate()
     {
+        ActualizarTurbo();
         AplicarDireccion();
         AplicarMotor();
+    }
+
+    private void ActualizarTurbo()
+    {
+        _turboActivo = _entrada.Turbo && _depositoTurbo > 0f && _entrada.Acelerador > 0.1f;
+
+        if (_turboActivo)
+        {
+            _depositoTurbo -= _consumoTurbo * Time.fixedDeltaTime;
+        }
+        else
+        {
+            _depositoTurbo += _recargaTurbo * Time.fixedDeltaTime;
+        }
+
+        _depositoTurbo = Mathf.Clamp(_depositoTurbo, 0f, _capacidadTurbo);
     }
 
     private void AplicarDireccion()
@@ -57,6 +88,10 @@ public class MotorCoche : MonoBehaviour
 
         float acelerador = _entrada.Acelerador;
 
+        // Valores efectivos según si el turbo está activo
+        float velocidadTope = _turboActivo ? _velocidadMaximaTurbo : _velocidadMaxima;
+        float potencia = _turboActivo ? _fuerzaMotor * _multiplicadorTurbo : _fuerzaMotor;
+
         foreach (DatosRueda rueda in _suspension.Ruedas)
         {
             if (!rueda.Traccion || !rueda.EstaEnSuelo) continue;
@@ -75,8 +110,8 @@ public class MotorCoche : MonoBehaviour
             }
             else
             {
-                float factorVelocidad = Mathf.Clamp01(1f - Mathf.Abs(velocidadAdelante) / _velocidadMaxima);
-                fuerza = acelerador * _fuerzaMotor * factorVelocidad;
+                float factorVelocidad = Mathf.Clamp01(1f - Mathf.Abs(velocidadAdelante) / velocidadTope);
+                fuerza = acelerador * potencia * factorVelocidad;
             }
 
             // 4) Rozamiento base + freno motor (solo al soltar el acelerador)

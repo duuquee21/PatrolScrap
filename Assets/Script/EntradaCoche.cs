@@ -9,6 +9,8 @@ public class EntradaCoche : MonoBehaviour
     public float Acelerador { get; private set; }   // -1 (freno/marcha atrás) a 1 (acelerar)
     public float Direccion { get; private set; }    // -1 (izquierda) a 1 (derecha)
 
+    public bool FrenoMano { get; private set; }
+    public bool Turbo { get; private set; }
     private void Update()
     {
         float objetivoAcelerador = 0f;
@@ -33,7 +35,25 @@ public class EntradaCoche : MonoBehaviour
             float stick = mando.leftStick.x.ReadValue();
             if (Mathf.Abs(stick) > Mathf.Abs(objetivoDireccion)) objetivoDireccion = stick;
         }
+        
+        bool frenoMano = false;
+        bool turbo = false;
 
+        if (teclado != null)
+        {
+            frenoMano = teclado.spaceKey.isPressed;
+            turbo = teclado.leftShiftKey.isPressed;
+        }
+
+        if (mando != null)
+        {
+            frenoMano |= mando.buttonEast.isPressed;    // B (Xbox) / Círculo (PlayStation)
+            turbo |= mando.buttonSouth.isPressed;       // A (Xbox) / X (PlayStation)
+        }
+
+
+        FrenoMano = frenoMano;
+        Turbo = turbo;
         Acelerador = Mathf.MoveTowards(Acelerador, objetivoAcelerador, _velocidadAcelerador * Time.deltaTime);
         Direccion = Mathf.MoveTowards(Direccion, objetivoDireccion, _velocidadDireccion * Time.deltaTime);
     }

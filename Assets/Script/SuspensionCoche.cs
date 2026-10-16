@@ -39,6 +39,9 @@ public class SuspensionCoche : MonoBehaviour
     [SerializeField, Range(0.5f, 0.95f)] private float _inicioTope = 0.8f;
     [SerializeField] private float _rigidezTope = 150000f;
 
+    [Header("Depuración")]
+    [SerializeField] private bool _mostrarGizmos = false;
+
     private Rigidbody _cuerpo;
     private float _tiempoDiagnostico;
 
@@ -125,7 +128,7 @@ public class SuspensionCoche : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (_ruedas == null) return;
+        if (!_mostrarGizmos || _ruedas == null) return;
 
         foreach (DatosRueda rueda in _ruedas)
         {
