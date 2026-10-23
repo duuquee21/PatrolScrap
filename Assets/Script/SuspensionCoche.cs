@@ -46,6 +46,7 @@ public class SuspensionCoche : MonoBehaviour
     private float _tiempoDiagnostico;
 
     public DatosRueda[] Ruedas => _ruedas;
+    public float RadioRueda => _radioRueda;
 
     private void Awake()
     {

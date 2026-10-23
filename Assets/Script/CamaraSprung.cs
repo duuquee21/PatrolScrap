@@ -48,8 +48,10 @@ public class CamaraSprung : MonoBehaviour
     {
         _cuerpoObjetivo = _objetivo.GetComponent<Rigidbody>();
         _motor = _objetivo.GetComponent<MotorCoche>();
-
-        // Empezamos ya colocados para que no "vuele" al darle a Play
+        Recolocar();
+    }
+    public void Recolocar()
+    {
         _direccionCamara = Vector3.ProjectOnPlane(_objetivo.forward, Vector3.up).normalized;
         _posicion = CalcularPosicionDeseada(0f);
         _velocidadCamara = Vector3.zero;

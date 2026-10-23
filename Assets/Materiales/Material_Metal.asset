@@ -17,3 +17,5 @@ MonoBehaviour:
   _icono: {fileID: 0}
   _valorBase: 10
   _espacio: 1
+  _prefabPieza: {fileID: 3538609681761418198, guid: dc0ac27071167ad4e9d67d4a0f10a785, type: 3}
+  _tamanoPieza: 0.7

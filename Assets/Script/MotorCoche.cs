@@ -19,7 +19,11 @@ public class MotorCoche : MonoBehaviour
     [SerializeField] private float _velocidadMaximaTurbo = 32f;     // m/s con turbo
     [SerializeField] private float _capacidadTurbo = 100f;
     [SerializeField] private float _consumoTurbo = 25f;             // unidades por segundo
-    [SerializeField] private float _recargaTurbo = 10f;             // unidades por segundo
+    [SerializeField] private float _recargaTurbo = 10f;
+
+    private GasolinaCoche _gasolina;
+
+    private bool HayGasolina => _gasolina == null || _gasolina.TieneGasolina;// unidades por segundo
 
     private Rigidbody _cuerpo;
     private SuspensionCoche _suspension;
@@ -37,6 +41,8 @@ public class MotorCoche : MonoBehaviour
         _suspension = GetComponent<SuspensionCoche>();
         _entrada = GetComponent<EntradaCoche>();
         _depositoTurbo = _capacidadTurbo;
+        _gasolina = GetComponent<GasolinaCoche>();
+
     }
 
     private void FixedUpdate()
@@ -48,7 +54,7 @@ public class MotorCoche : MonoBehaviour
 
     private void ActualizarTurbo()
     {
-        _turboActivo = _entrada.Turbo && _depositoTurbo > 0f && _entrada.Acelerador > 0.1f;
+        _turboActivo = _entrada.Turbo && HayGasolina && _depositoTurbo > 0f && _entrada.Acelerador > 0.1f;
 
         if (_turboActivo)
         {
@@ -87,6 +93,7 @@ public class MotorCoche : MonoBehaviour
         if (ruedasMotrices == 0) return;   // en el aire no hay empuje
 
         float acelerador = _entrada.Acelerador;
+        float aceleradorMotor = HayGasolina ? acelerador : 0f;   // sin gasolina, el motor no empuja
 
         // Valores efectivos según si el turbo está activo
         float velocidadTope = _turboActivo ? _velocidadMaximaTurbo : _velocidadMaxima;
@@ -111,11 +118,11 @@ public class MotorCoche : MonoBehaviour
             else
             {
                 float factorVelocidad = Mathf.Clamp01(1f - Mathf.Abs(velocidadAdelante) / velocidadTope);
-                fuerza = acelerador * potencia * factorVelocidad;
+                fuerza = aceleradorMotor * potencia * factorVelocidad;
             }
 
             // 4) Rozamiento base + freno motor (solo al soltar el acelerador)
-            float sinAcelerar = 1f - Mathf.Abs(acelerador);
+            float sinAcelerar = 1f - Mathf.Abs(aceleradorMotor);
             fuerza -= velocidadAdelante * (_rozamiento + _frenoMotor * sinAcelerar);
 
             // 5) Repartir entre ruedas y aplicar

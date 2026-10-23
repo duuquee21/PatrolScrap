@@ -102,11 +102,9 @@ public class Destruible : MonoBehaviour
                 Recolectable pieza = Instantiate(_prefabRecolectable, PuntoAleatorio(), Quaternion.identity);
                 pieza.Configurar(botin.Tipo);
 
-                if (pieza.TryGetComponent(out Rigidbody cuerpo))
-                {
-                    Vector3 salto = direccion * 0.5f + Vector3.up + Random.insideUnitSphere * 0.5f;
-                    cuerpo.AddForce(salto * 4f, ForceMode.VelocityChange);
-                }
+                // Salen hacia delante y hacia arriba; la gravedad suave las hace subir y bajar despacio
+                Vector3 velocidad = direccion * 2f + Vector3.up * 6f + Random.insideUnitSphere * 1.5f;
+                pieza.Lanzar(velocidad);
             }
         }
     }

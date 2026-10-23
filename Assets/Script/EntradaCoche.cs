@@ -8,7 +8,7 @@ public class EntradaCoche : MonoBehaviour
 
     public float Acelerador { get; private set; }   // -1 (freno/marcha atrás) a 1 (acelerar)
     public float Direccion { get; private set; }    // -1 (izquierda) a 1 (derecha)
-
+    public bool Bloqueada { get; set; }
     public bool FrenoMano { get; private set; }
     public bool Turbo { get; private set; }
     private void Update()
@@ -51,6 +51,13 @@ public class EntradaCoche : MonoBehaviour
             turbo |= mando.buttonSouth.isPressed;       // A (Xbox) / X (PlayStation)
         }
 
+        if (Bloqueada)
+        {
+            objetivoAcelerador = 0f;
+            objetivoDireccion = 0f;
+            frenoMano = false;
+            turbo = false;
+        }
 
         FrenoMano = frenoMano;
         Turbo = turbo;

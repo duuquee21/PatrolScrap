@@ -8,7 +8,7 @@ public class InventarioCoche : MonoBehaviour
     private readonly Dictionary<MaterialChatarra, int> _contenido = new Dictionary<MaterialChatarra, int>();
     private int _espacioUsado;
 
-    // La UI se suscribirá a este evento para redibujarse solo cuando cambie algo
+    // La UI se suscribe a este evento para redibujarse solo cuando cambie algo
     public event System.Action Cambiado;
 
     public int Capacidad => _capacidad;
@@ -29,22 +29,63 @@ public class InventarioCoche : MonoBehaviour
         return true;
     }
 
+    // Devuelve false si no hay tantas unidades
+    public bool TryQuitar(MaterialChatarra tipo, int cantidad)
+    {
+        if (Cantidad(tipo) < cantidad) return false;
+
+        _contenido[tipo] -= cantidad;
+        _espacioUsado -= tipo.Espacio * cantidad;
+
+        Cambiado?.Invoke();
+        return true;
+    }
+
     public int Cantidad(MaterialChatarra tipo)
     {
         return _contenido.TryGetValue(tipo, out int cantidad) ? cantidad : 0;
     }
 
-    // TEMPORAL: lista en pantalla para comprobar que funciona. La UI real va después
-    private void OnGUI()
+    // Foto del contenido actual (sin materiales a cero). No cambia con el inventario
+    public List<KeyValuePair<MaterialChatarra, int>> Instantanea()
     {
-        GUI.color = Color.black;
-        GUI.Label(new Rect(10, 10, 400, 25), $"Maletero: {_espacioUsado}/{_capacidad}" + (_espacioUsado >= _capacidad ? "  (LLENO)" : ""));
-
-        int fila = 1;
+        List<KeyValuePair<MaterialChatarra, int>> lista = new List<KeyValuePair<MaterialChatarra, int>>();
         foreach (KeyValuePair<MaterialChatarra, int> par in _contenido)
         {
-            GUI.Label(new Rect(10, 10 + fila * 22, 400, 25), $"{par.Key.Nombre}: {par.Value}");
-            fila++;
+            if (par.Value > 0) lista.Add(par);
         }
+        return lista;
+    }
+
+    // Quita una fracción de cada material. Devuelve cuántas piezas se han perdido
+    public int PerderFraccion(float fraccion)
+    {
+        int perdidas = 0;
+
+        // Copiamos las claves: no se puede modificar un diccionario mientras se recorre
+        List<MaterialChatarra> tipos = new List<MaterialChatarra>(_contenido.Keys);
+
+        foreach (MaterialChatarra tipo in tipos)
+        {
+            int actual = _contenido[tipo];
+            int quitar = Mathf.Min(actual, Mathf.CeilToInt(actual * fraccion));
+
+            _contenido[tipo] = actual - quitar;
+            _espacioUsado -= quitar * tipo.Espacio;
+            perdidas += quitar;
+        }
+
+        if (perdidas > 0) Cambiado?.Invoke();
+        return perdidas;
+    }
+
+    // Deja todos los materiales a 0 (las claves se mantienen para que el HUD se actualice)
+    public void VaciarTodo()
+    {
+        List<MaterialChatarra> tipos = new List<MaterialChatarra>(_contenido.Keys);
+        foreach (MaterialChatarra tipo in tipos) _contenido[tipo] = 0;
+
+        _espacioUsado = 0;
+        Cambiado?.Invoke();
     }
 }
