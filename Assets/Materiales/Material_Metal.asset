@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6afa36553bc3444830cf86f80add3c, type: 3}
   m_Name: Material_Metal
   m_EditorClassIdentifier: 
-  _nombre: Chatarra
+  _nombre: Metal
   _color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _icono: {fileID: 0}
   _valorBase: 10

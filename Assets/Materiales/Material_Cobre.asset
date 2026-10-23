@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6afa36553bc3444830cf86f80add3c, type: 3}
   m_Name: Material_Cobre
   m_EditorClassIdentifier: 
-  _nombre: Chatarra
+  _nombre: Cobre
   _color: {r: 1, g: 0.64744824, b: 0, a: 1}
   _icono: {fileID: 0}
   _valorBase: 25
