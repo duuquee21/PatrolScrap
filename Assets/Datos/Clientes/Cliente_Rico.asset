@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a360e2e20b300c04fa5d9b4d85e9bf8e, type: 3}
+  m_Name: Cliente_Rico
+  m_EditorClassIdentifier: Assembly-CSharp::TipoCliente
+  _nombre: Rico
+  _pista: "Anillos y traje caro. Pagar\xEDa mucho m\xE1s del precio, pero se ofende
+    si abusas."
+  _color: {r: 0.95, g: 0.78, b: 0.25, a: 1}
+  _retrato: {fileID: 0}
+  _peso: 10
+  _limite: {x: 1.6, y: 2.2}
+  _ofertaInicial: {x: 0.6, y: 0.75}
+  _cesionPorRonda: 0.4
+  _paciencia: {x: 90, y: 120}
+  _perdidaPorRonda: 10
+  _sensibilidadCodicia: 15
+  _umbralOfensa: 0.35
+  _avisoImpaciencia: 0.35
+  _saludo:
+  - Buenas tardes. El dinero no es problema.
+  - Vengo a por lo mejor que tengas.
+  _oferta:
+  - '{cantidad} de {pieza}. Digamos {precio} $.'
+  - "Pagar\xE9 {precio} $, sin regatear."
+  _contraOferta:
+  - Sea. {precio} $.
+  - Si insistes... {precio} $.
+  _aceptacion:
+  - Excelente. Un placer hacer negocios.
+  - "Perfecto. Qu\xE9date el cambio."
+  _rechazo:
+  - "Qu\xE9 l\xE1stima. Me llevar\xE9 mi dinero a otra parte."
+  - "Otra vez ser\xE1."
+  _impaciencia:
+  - "Empiezo a pensar que no sabes con qui\xE9n hablas..."
+  - No abuses.
+  _marcha:
+  - Esto me aburre. Buenas tardes.
+  - Me has decepcionado.
+  _ofensa:
+  - "\xBFC\xF3mo te atreves? \xA1Se acab\xF3!"
+  - "Eso es un insulto. Adi\xF3s."

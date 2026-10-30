@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a360e2e20b300c04fa5d9b4d85e9bf8e, type: 3}
+  m_Name: Cliente_Impaciente
+  m_EditorClassIdentifier: Assembly-CSharp::TipoCliente
+  _nombre: Impaciente
+  _pista: Mira el reloj y golpea el suelo con el pie. Paga bien, pero se va a la
+    primera de cambio.
+  _color: {r: 0.95, g: 0.4, b: 0.35, a: 1}
+  _retrato: {fileID: 0}
+  _peso: 20
+  _limite: {x: 1.15, y: 1.45}
+  _ofertaInicial: {x: 0.8, y: 0.9}
+  _cesionPorRonda: 0.5
+  _paciencia: {x: 30, y: 45}
+  _perdidaPorRonda: 25
+  _sensibilidadCodicia: 25
+  _umbralOfensa: 0
+  _avisoImpaciencia: 0.5
+  _saludo:
+  - "\xA1R\xE1pido, que tengo prisa!"
+  - Sin rodeos, que llego tarde.
+  _oferta:
+  - "{cantidad} de {pieza}. {precio} $. \xA1Ya!"
+  - Toma {precio} $ y dame {cantidad} de {pieza}.
+  _contraOferta:
+  - "\xA1Vale, {precio} $! \xA1Pero date prisa!"
+  - "{precio} $. \xDAltima vez."
+  _aceptacion:
+  - "\xA1Perfecto! \xA1Adi\xF3s!"
+  - "\xA1Hecho, me voy!"
+  _rechazo:
+  - "\xA1No tengo tiempo para esto!"
+  - "Pues nada, adi\xF3s."
+  _impaciencia:
+  - "\xA1Venga ya!"
+  - "\xA1No puedo esperar m\xE1s!"
+  _marcha:
+  - "\xA1Me voy! \xA1Pierdes la venta!"
+  - "\xA1Se acab\xF3, llego tarde!"
+  _ofensa:
+  - "\xA1Lo que me faltaba!"
+  - "\xA1No me hagas perder el tiempo!"

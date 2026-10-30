@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a360e2e20b300c04fa5d9b4d85e9bf8e, type: 3}
+  m_Name: Cliente_Regateador
+  m_EditorClassIdentifier: Assembly-CSharp::TipoCliente
+  _nombre: Regateador
+  _pista: "Ropa remendada y monedas contadas. Ofrece muy poco y nunca pagar\xE1 mucho,
+    pero aguanta el regateo."
+  _color: {r: 0.75, g: 0.82, b: 0.35, a: 1}
+  _retrato: {fileID: 0}
+  _peso: 25
+  _limite: {x: 0.6, y: 0.8}
+  _ofertaInicial: {x: 0.55, y: 0.7}
+  _cesionPorRonda: 0.15
+  _paciencia: {x: 110, y: 140}
+  _perdidaPorRonda: 12
+  _sensibilidadCodicia: 12
+  _umbralOfensa: 0
+  _avisoImpaciencia: 0.35
+  _saludo:
+  - A ver... espero que los precios sean razonables.
+  - "Antes de nada: no pienso pagar de m\xE1s."
+  _oferta:
+  - '{cantidad} de {pieza}... eso vale {precio} $, y ya es generoso.'
+  - "Te doy {precio} $. Es lo que vale, ni un c\xE9ntimo m\xE1s."
+  _contraOferta:
+  - Ni hablar. {precio} $ y gracias.
+  - Uf, mi cartera sufre... {precio} $.
+  _aceptacion:
+  - Esto es un robo, pero vale.
+  - "Est\xE1 bien. Me arruinas."
+  _rechazo:
+  - "Lo sab\xEDa, todo el mundo se quiere forrar."
+  - Pues me voy con la cartera intacta.
+  _impaciencia:
+  - "Estoy cans\xE1ndome de tanto n\xFAmero."
+  - Cada vez me gusta menos este trato.
+  _marcha:
+  - "No pago eso. Adi\xF3s."
+  - Mi dinero se queda conmigo.
+  _ofensa:
+  - "\xA1Eso es un atraco!"
+  - "\xA1Ni en sue\xF1os!"

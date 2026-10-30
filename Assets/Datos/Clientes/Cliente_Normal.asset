@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a360e2e20b300c04fa5d9b4d85e9bf8e, type: 3}
+  m_Name: Cliente_Normal
+  m_EditorClassIdentifier: Assembly-CSharp::TipoCliente
+  _nombre: Normal
+  _pista: "Sin ninguna se\xF1al particular. Compra a un precio cercano al de referencia."
+  _color: {r: 0.62, g: 0.68, b: 0.78, a: 1}
+  _retrato: {fileID: 0}
+  _peso: 45
+  _limite: {x: 1, y: 1.25}
+  _ofertaInicial: {x: 0.7, y: 0.85}
+  _cesionPorRonda: 0.35
+  _paciencia: {x: 80, y: 100}
+  _perdidaPorRonda: 15
+  _sensibilidadCodicia: 20
+  _umbralOfensa: 0
+  _avisoImpaciencia: 0.35
+  _saludo:
+  - "Buenas. Vengo a ver qu\xE9 tienes."
+  - "Hola, \xBFqu\xE9 hay hoy en el almac\xE9n?"
+  _oferta:
+  - Quiero {cantidad} de {pieza}. Te doy {precio} $.
+  - Me llevo {cantidad} de {pieza} por {precio} $.
+  _contraOferta:
+  - Mmm... subo a {precio} $.
+  - "Est\xE1 bien, {precio} $ y cerramos."
+  _aceptacion:
+  - Trato hecho.
+  - Perfecto, me lo llevo.
+  _rechazo:
+  - "Qu\xE9 pena. Otra vez ser\xE1."
+  - "Bueno, buscar\xE9 en otro sitio."
+  _impaciencia:
+  - Se me acaba la paciencia...
+  - No me hagas perder el tiempo.
+  _marcha:
+  - "Se acab\xF3. Me voy."
+  - "Esto no lleva a ning\xFAn sitio."
+  _ofensa:
+  - Eso es una falta de respeto.
+  - Con esas pretensiones, no.

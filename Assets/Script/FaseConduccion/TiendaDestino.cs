@@ -32,6 +32,11 @@ public class TiendaDestino : MonoBehaviour
         transform.localScale = _escalaBase * (1f + _fuerzaPulso * _pulso);
     }
 
+    public int Cantidad(MaterialChatarra tipo)
+    {
+        return _stock.TryGetValue(tipo, out int cantidad) ? cantidad : 0;
+    }
+
     public void Recibir(MaterialChatarra tipo, int cantidad)
     {
         _stock.TryGetValue(tipo, out int actual);
@@ -39,6 +44,16 @@ public class TiendaDestino : MonoBehaviour
 
         _pulso = 1f;
         StockCambiado?.Invoke();
+    }
+
+    // Devuelve false si no hay tantas unidades: en ese caso no se quita nada
+    public bool TryQuitar(MaterialChatarra tipo, int cantidad)
+    {
+        if (Cantidad(tipo) < cantidad) return false;
+
+        _stock[tipo] -= cantidad;
+        StockCambiado?.Invoke();
+        return true;
     }
 
     // TEMPORAL: stock en pantalla para comprobar que llega. La tienda real vendrá después
@@ -50,6 +65,7 @@ public class TiendaDestino : MonoBehaviour
         int fila = 1;
         foreach (KeyValuePair<MaterialChatarra, int> par in _stock)
         {
+            if (par.Value <= 0) continue;
             GUI.Label(new Rect(Screen.width - 220, 10 + fila * 22, 210, 25), $"{par.Key.Nombre}: {par.Value}");
             fila++;
         }

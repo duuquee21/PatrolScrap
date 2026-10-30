@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9071022194405813886}
   - component: {fileID: 4484196501789782664}
   - component: {fileID: 2361296404882036009}
+  - component: {fileID: -6770946890524200337}
   m_Layer: 0
   m_Name: Caja_Destruible
   m_TagString: Untagged
@@ -111,8 +112,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.6487707, y: 0.50168955, z: 0.5756835}
+  m_Center: {x: 0.0006834666, y: 0.24915557, z: 0.008492202}
 --- !u!114 &2361296404882036009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,3 +140,23 @@ MonoBehaviour:
   - Tipo: {fileID: 11400000, guid: 43c5037f9731a3c4d9a45ebc5235ad66, type: 2}
     Minimo: 0
     Maximo: 2
+--- !u!114 &-6770946890524200337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388679599403820485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37c8aefa2e9547e4480e7c4ba3cef919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AjustarAlSuelo
+  _capaSuelo:
+    serializedVersion: 2
+    m_Bits: 0
+  _alturaRayo: 60
+  _hundimiento: 0.1
+  _alineacion: 0.6
+  _inclinacionMaxima: 20
+  _giroAleatorio: 1
