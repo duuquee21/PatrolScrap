@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 270386725}
   - component: {fileID: 270386724}
   - component: {fileID: 270386726}
+  - component: {fileID: 270386727}
   m_Layer: 0
   m_Name: Economia
   m_TagString: Untagged
@@ -261,6 +262,30 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 43c5037f9731a3c4d9a45ebc5235ad66, type: 2}
   - {fileID: 11400000, guid: bb297fd5bc2f1344c9e131ac31eb93df, type: 2}
   - {fileID: 11400000, guid: f6aa6dea644532f4ea6342dad9aa4cd2, type: 2}
+--- !u!114 &270386727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270386723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 698854982ecd7b14aade85186fc4e14f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RegateoPruebas
+  _generador: {fileID: 0}
+  _cartera: {fileID: 0}
+  _tienda: {fileID: 0}
+  _precioAPedir: 100
+  _tipos:
+  - {fileID: 11400000, guid: c2fde38517bf6dd479d8c589ab5b9a49, type: 2}
+  - {fileID: 11400000, guid: 75db10fcf3e94014cbadbbebd7676a5e, type: 2}
+  - {fileID: 11400000, guid: 1256aa89cbd64be48a58d4d8d78e3054, type: 2}
+  - {fileID: 11400000, guid: 107a22b01304e284699008fc5666e9f8, type: 2}
+  _materialSimulacion: {fileID: 11400000, guid: 43c5037f9731a3c4d9a45ebc5235ad66, type: 2}
+  _cantidadSimulacion: 3
+  _partidas: 2000
 --- !u!1001 &313638382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1890,6 +1915,7 @@ GameObject:
   - component: {fileID: 1320815352}
   - component: {fileID: 1320815353}
   - component: {fileID: 1320815354}
+  - component: {fileID: 1320815355}
   m_Layer: 0
   m_Name: HUD
   m_TagString: Untagged
@@ -2003,6 +2029,41 @@ MonoBehaviour:
   _fuerzaPulso: 0.18
   _duracionVariacion: 1.2
   _subidaVariacion: 40
+--- !u!114 &1320815355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320815349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45676631740084648a6e79d2be13e9f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MostradorUI
+  _generador: {fileID: 0}
+  _simbolo: $
+  _tamanoTexto: 34
+  _colorTelon: {r: 0, g: 0, b: 0, a: 0.6}
+  _colorFondoRetrato: {r: 0.16, g: 0.2, b: 0.24, a: 1}
+  _colorPapel: {r: 0.95, g: 0.92, b: 0.84, a: 1}
+  _colorTinta: {r: 0.14, g: 0.13, b: 0.12, a: 1}
+  _colorTintaSuave: {r: 0.45, g: 0.42, b: 0.38, a: 1}
+  _colorOferta: {r: 0.1, g: 0.45, b: 0.2, a: 1}
+  _duracionApertura: 0.35
+  _entradaRetrato: 140
+  _letrasPorSegundo: 60
+  _fuerzaPulsoOferta: 0.2
+  _velocidadPulsoOferta: 4
+  _rangoPerdida: {x: 8, y: 25}
+  _velocidadGesto: {x: 0.6, y: 3.5}
+  _amplitudGesto: {x: 2, y: 9}
+  _tiposDePrueba:
+  - {fileID: 11400000, guid: c2fde38517bf6dd479d8c589ab5b9a49, type: 2}
+  - {fileID: 11400000, guid: 75db10fcf3e94014cbadbbebd7676a5e, type: 2}
+  - {fileID: 11400000, guid: 1256aa89cbd64be48a58d4d8d78e3054, type: 2}
+  - {fileID: 11400000, guid: 107a22b01304e284699008fc5666e9f8, type: 2}
+  _materialDePrueba: {fileID: 11400000, guid: 43c5037f9731a3c4d9a45ebc5235ad66, type: 2}
 --- !u!1 &1335282628
 GameObject:
   m_ObjectHideFlags: 0
